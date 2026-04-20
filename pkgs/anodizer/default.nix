@@ -16,10 +16,10 @@ let
     x86_64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.0/anodizer-0.1.0-linux-amd64.tar.gz";
   };
   shaMap = {
-    aarch64-darwin = "1ymdciq67m08x6rpb47j1qw0q71ygz2clq29wrik77qif8q4l4h2";
-    aarch64-linux = "0jl9bancdkhbgyng2mqmbqivdb0fwaa1d1da08ddw43n1jm998ir";
-    x86_64-darwin = "1vzh8a3kx65v2d0960a30m3akzd41pkrdhh0vj2jkbb54sm5wwv7";
-    x86_64-linux = "13ii7z46b5f53fdf40wj0dj0jzxpzaf1qwyhqa86567c2fg38rm8";
+    aarch64-darwin = "1lsr1kk04mvc4bryhn7nxxkgp6p9y1sa0lfw22yqdbab8w082crx";
+    aarch64-linux = "0p5pyls72s2g80qqj53lnwg2snbqzylg472zxwmndmryi42y980c";
+    x86_64-darwin = "0jxcp4rrmz2msq4m8ky17zs5q1q0rc6cgz6dfis6bmxrjwfdlzh9";
+    x86_64-linux = "1w3996zaqhbngl08gyz0rp2rkdak82xrvkkfji78n9haja1hgr70";
   };
 in
 stdenvNoCC.mkDerivation {
@@ -53,6 +53,6 @@ stdenvNoCC.mkDerivation {
     homepage = "https://github.com/tj-smith47/anodizer";
     license = lib.licenses.mit;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    platforms = [ "x86_64-linux" "aarch64-darwin" "aarch64-linux" "x86_64-darwin" ];
+    platforms = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" "aarch64-linux" ];
   };
 }
