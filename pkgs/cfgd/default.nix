@@ -16,10 +16,10 @@ let
     x86_64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.3.5/cfgd-0.3.5-linux-amd64.tar.gz";
   };
   shaMap = {
-    aarch64-darwin = "1f9g1h64lyj272266nqylq4x00cxv28n2cnp149spw4qw9rpv6ds";
-    aarch64-linux = "15ck7ybbp2yiminzq3ig2a7c98lm9p326fv2hr5lx6v54i8gzb23";
-    x86_64-darwin = "1xqprd0lqbkbfcc3wxx2gzib0fv51zjbj6gvd3kjdv1xr2x5sb54";
-    x86_64-linux = "00cgvvzrd63204kbqk1zy39yzbbsg7ng72w8dx2qz71gl38y393a";
+    aarch64-darwin = "07v00rmglwgbrjjy6j7zp1fxanmpczhmp28xbg1dknrv3gwj9v83";
+    aarch64-linux = "18sl8i9xpgah48g7lhhqg00ddkv5cdpsqm5nx1b4hd67aixnfrxy";
+    x86_64-darwin = "1j0y50kj24g4ihy7j1803z9xcrx7z9dy2adnj60x08ml9p3sa1ba";
+    x86_64-linux = "1f04k25h44gg22sjx3m3l9svbagcqxdkily5rbf6yr09wa353cg8";
   };
 in
 stdenvNoCC.mkDerivation {
@@ -53,6 +53,6 @@ stdenvNoCC.mkDerivation {
     homepage = "https://github.com/tj-smith47/cfgd";
     license = lib.licenses.mit;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    platforms = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" "aarch64-linux" ];
+    platforms = [ "aarch64-darwin" "aarch64-linux" "x86_64-linux" "x86_64-darwin" ];
   };
 }
