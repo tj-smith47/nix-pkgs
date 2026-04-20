@@ -53,6 +53,6 @@ stdenvNoCC.mkDerivation {
     homepage = "https://github.com/tj-smith47/cfgd";
     license = lib.licenses.mit;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    platforms = [ "aarch64-linux" "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
+    platforms = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
   };
 }
