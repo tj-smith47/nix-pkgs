@@ -10,21 +10,21 @@
 let
   selectSystem = attrs: attrs.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
   urlMap = {
-    aarch64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.0/anodizer-0.1.0-darwin-arm64.tar.gz";
-    aarch64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.0/anodizer-0.1.0-linux-arm64.tar.gz";
-    x86_64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.0/anodizer-0.1.0-darwin-amd64.tar.gz";
-    x86_64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.0/anodizer-0.1.0-linux-amd64.tar.gz";
+    aarch64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.1/anodizer-0.1.1-darwin-arm64.tar.gz";
+    aarch64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.1/anodizer-0.1.1-linux-arm64.tar.gz";
+    x86_64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.1/anodizer-0.1.1-darwin-amd64.tar.gz";
+    x86_64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.1.1/anodizer-0.1.1-linux-amd64.tar.gz";
   };
   shaMap = {
-    aarch64-darwin = "1lsr1kk04mvc4bryhn7nxxkgp6p9y1sa0lfw22yqdbab8w082crx";
-    aarch64-linux = "0p5pyls72s2g80qqj53lnwg2snbqzylg472zxwmndmryi42y980c";
-    x86_64-darwin = "0jxcp4rrmz2msq4m8ky17zs5q1q0rc6cgz6dfis6bmxrjwfdlzh9";
-    x86_64-linux = "1w3996zaqhbngl08gyz0rp2rkdak82xrvkkfji78n9haja1hgr70";
+    aarch64-darwin = "0bn4i9rwkbb6g6cj9zkj07nhvnapw503yj9kcy5swwasm5d4ind7";
+    aarch64-linux = "084jjmlxyyrclbxnddvggqwifhrdscngwihrqa821ngw05lfw574";
+    x86_64-darwin = "0733qgrwr9amq820zrp5z65r5a9nrzhalp0z47a0wcpqprvypiy2";
+    x86_64-linux = "1fn0agbb6vyr546yqh14k2m9rjgglw420s9gb78jfa5pdapj7qb1";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "anodizer";
-  version = "0.1.0";
+  version = "0.1.1";
 
   src = fetchurl {
     url = selectSystem urlMap;
@@ -53,6 +53,6 @@ stdenvNoCC.mkDerivation {
     homepage = "https://github.com/tj-smith47/anodizer";
     license = lib.licenses.mit;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    platforms = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" "aarch64-linux" ];
+    platforms = [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" "aarch64-linux" ];
   };
 }
