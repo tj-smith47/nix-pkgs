@@ -1,58 +1,65 @@
-{ lib
-, stdenvNoCC
-, fetchurl
-, unzip
-, stdenv
-, autoPatchelfHook
-, installShellFiles
-}:
-
-let
+{
+  lib,
+  stdenvNoCC,
+  fetchurl,
+  unzip,
+  stdenv,
+  autoPatchelfHook,
+  installShellFiles,
+}: let
   selectSystem = attrs: attrs.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
   urlMap = {
-    aarch64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.3.5/cfgd-0.3.5-darwin-arm64.tar.gz";
-    aarch64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.3.5/cfgd-0.3.5-linux-arm64.tar.gz";
-    x86_64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.3.5/cfgd-0.3.5-darwin-amd64.tar.gz";
-    x86_64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.3.5/cfgd-0.3.5-linux-amd64.tar.gz";
+    aarch64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.4.0/cfgd-0.4.0-darwin-arm64.tar.gz";
+    aarch64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.4.0/cfgd-0.4.0-linux-arm64.tar.gz";
+    x86_64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.4.0/cfgd-0.4.0-darwin-amd64.tar.gz";
+    x86_64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.4.0/cfgd-0.4.0-linux-amd64.tar.gz";
   };
   shaMap = {
-    aarch64-darwin = "07v00rmglwgbrjjy6j7zp1fxanmpczhmp28xbg1dknrv3gwj9v83";
-    aarch64-linux = "18sl8i9xpgah48g7lhhqg00ddkv5cdpsqm5nx1b4hd67aixnfrxy";
-    x86_64-darwin = "1j0y50kj24g4ihy7j1803z9xcrx7z9dy2adnj60x08ml9p3sa1ba";
-    x86_64-linux = "1f04k25h44gg22sjx3m3l9svbagcqxdkily5rbf6yr09wa353cg8";
+    aarch64-darwin = "151ajnhjif18favyiy9yqyqnsmc27xn8r2viivc9s9zvmz87vl73";
+    aarch64-linux = "1fqd6x1jrmqbvwp1513dh6kdikmqdilvpmai4ddf70d8li8j30q5";
+    x86_64-darwin = "16qi7zk64ik39cnydxkqsiwd94l8vd2vddpxdi4rhn7q96h05dhf";
+    x86_64-linux = "1v6alrj4p33a1pq00mgs26fia6g986a9x6dvqb4ki36wwgsd83v4";
   };
 in
-stdenvNoCC.mkDerivation {
-  pname = "cfgd";
-  version = "0.3.5";
+  stdenvNoCC.mkDerivation {
+    pname = "cfgd";
+    version = "0.4.0";
 
-  src = fetchurl {
-    url = selectSystem urlMap;
-    sha256 = selectSystem shaMap;
-  };
+    src = fetchurl {
+      url = selectSystem urlMap;
+      sha256 = selectSystem shaMap;
+    };
 
-  sourceRoot = ".";
+    sourceRoot = ".";
 
-  nativeBuildInputs = [
-    installShellFiles
-    unzip
-  ] ++ lib.optionals stdenvNoCC.isLinux [ autoPatchelfHook ];
+    nativeBuildInputs =
+      [
+        installShellFiles
+        unzip
+      ]
+      ++ lib.optionals stdenvNoCC.isLinux [autoPatchelfHook];
 
-  buildInputs = lib.optionals stdenvNoCC.isLinux [
-    stdenv.cc.cc.lib
-  ];
+    buildInputs = lib.optionals stdenvNoCC.isLinux [
+      stdenv.cc.cc.lib
+    ];
 
-  installPhase = ''
-    mkdir -p $out/bin
-    cp -vr ./cfgd $out/bin/cfgd
-    chmod +x $out/bin/cfgd
-  '';
+    installPhase = ''
+      mkdir -p $out/bin
+      cp -vr ./cfgd $out/bin/cfgd
+      chmod +x $out/bin/cfgd
+      installManPage share/man/man1/cfgd.1
+    '';
 
-  meta = {
-    description = "Declarative, GitOps-style machine configuration management";
-    homepage = "https://github.com/tj-smith47/cfgd";
-    license = lib.licenses.mit;
-    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    platforms = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
-  };
-}
+    postInstall = ''
+      echo "Installed cfgd. Run 'cfgd init' to scaffold a config."
+    '';
+
+    meta = {
+      description = "Declarative, GitOps-style machine configuration management";
+      homepage = "https://github.com/tj-smith47/cfgd";
+      license = lib.licenses.mit;
+      mainProgram = "cfgd";
+      sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
+      platforms = ["aarch64-linux" "x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
+    };
+  }
