@@ -15,10 +15,10 @@
     x86_64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.13.1/anodizer-0.13.1-linux-amd64-extra.tar.xz";
   };
   shaMap = {
-    aarch64-darwin = "0ays0zlsi1cf5gpy89m3pcnzy044z73rnv7r4dixy8i92m5mw5g8";
-    aarch64-linux = "1dqqqrnk5bm0vbkjs6gc62f5d1wasn6s5abnn4wdcr96g6l597b6";
-    x86_64-darwin = "1dff45jlw5r9w1ig6g0rdhi29x74032f3k0ihq0kag735bbgvf76";
-    x86_64-linux = "04zfqa9kl151lzq2kmicqn8di74gx4fdvj6f872y4pxsdkza8z6d";
+    aarch64-darwin = "1nvlx1cwj6l8c94rhvc0q3mkiqaial841naf2f48nhbkfhfv0xld";
+    aarch64-linux = "1l7jqy6i4h4bv7ahn8zp2413v11mbjwpk4bfibhsrsrba2fi6r3x";
+    x86_64-darwin = "12pq2ws7ppf7aj8x3bfjn1f6yj6vjdb5x1ywzk9kbard7f0rcbsb";
+    x86_64-linux = "1h60vc75gzyrbc991a8abyy6fbk2pxfmckil7swdsw21mfisb3dh";
   };
 in
   stdenvNoCC.mkDerivation {
