@@ -22,12 +22,14 @@
     {
       overlays.default = final: prev: {
         anodizer = final.callPackage ./pkgs/anodizer/default.nix { };
+        cfgd = final.callPackage ./pkgs/cfgd/default.nix { };
       };
 
       packages = forAllSystems (system:
         let pkgs = pkgsFor system;
         in {
           anodizer = pkgs.anodizer;
+          cfgd = pkgs.cfgd;
         });
     };
 }
