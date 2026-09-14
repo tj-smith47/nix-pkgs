@@ -9,21 +9,21 @@
 }: let
   selectSystem = attrs: attrs.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
   urlMap = {
-    aarch64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.27.0/anodizer-0.27.0-darwin-arm64-extra.tar.xz";
-    aarch64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.27.0/anodizer-0.27.0-linux-arm64-extra.tar.xz";
-    x86_64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.27.0/anodizer-0.27.0-darwin-amd64-extra.tar.xz";
-    x86_64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.27.0/anodizer-0.27.0-linux-amd64-extra.tar.xz";
+    aarch64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.28.0/anodizer-0.28.0-darwin-arm64-extra.tar.xz";
+    aarch64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.28.0/anodizer-0.28.0-linux-arm64-extra.tar.xz";
+    x86_64-darwin = "https://github.com/tj-smith47/anodizer/releases/download/v0.28.0/anodizer-0.28.0-darwin-amd64-extra.tar.xz";
+    x86_64-linux = "https://github.com/tj-smith47/anodizer/releases/download/v0.28.0/anodizer-0.28.0-linux-amd64-extra.tar.xz";
   };
   shaMap = {
-    aarch64-darwin = "172w54827yd3bkysdpydnqlnmamxlq1pgs3kl8xi8m4f593498z1";
-    aarch64-linux = "14sqz88am8bibz19jkny4y5mhkbf17w8w8s6ci4zg5xd3s3f1lhf";
-    x86_64-darwin = "09vya2hp1jnrp15xdzjvjfx0qkj3mz61r0d3vhniwvnpq94lb7lf";
-    x86_64-linux = "0knpiy5k2a5762snns3rj3gib6q9c6mv3ni48a8whwz2xskzsz31";
+    aarch64-darwin = "1vw1aw80qpcri1mipmb405p22gr6md31lx8aaaac9n714l38p2x0";
+    aarch64-linux = "01fsbv9npmrx9czqrjjrxldd2k9p5irc0pmgrk7lqg8j0i0nd0s7";
+    x86_64-darwin = "08xgcpcck2qzn3wrx15x3r5i49r07zspsz1mali925prkqq34r68";
+    x86_64-linux = "1d3cgym9qq26nadm6gfhjils756vsv5yc3xxrw340jhq3zbf7ps7";
   };
 in
   stdenvNoCC.mkDerivation {
     pname = "anodizer";
-    version = "0.27.0";
+    version = "0.28.0";
 
     src = fetchurl {
       url = selectSystem urlMap;
