@@ -9,21 +9,21 @@
 }: let
   selectSystem = attrs: attrs.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
   urlMap = {
-    aarch64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.10.0/cfgd-0.10.0-darwin-arm64.tar.gz";
-    aarch64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.10.0/cfgd-0.10.0-linux-arm64.tar.gz";
-    x86_64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.10.0/cfgd-0.10.0-darwin-amd64.tar.gz";
-    x86_64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.10.0/cfgd-0.10.0-linux-amd64.tar.gz";
+    aarch64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-darwin-arm64.tar.gz";
+    aarch64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-linux-arm64.tar.gz";
+    x86_64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-darwin-amd64.tar.gz";
+    x86_64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-linux-amd64.tar.gz";
   };
   shaMap = {
-    aarch64-darwin = "1irjbixsy7xgzgxdfnbsivr6hj9szzp2cmbyq9aaidiibhikmrma";
-    aarch64-linux = "0v1jhp86d63073ahqdlwkz278q1czaq7r3jpglf3k67iaa75bd8p";
-    x86_64-darwin = "1b44drqz6xv7gpjy9g1dkcjf6k1yqa4j6r0sqh8rkrcqp6lkd6jj";
-    x86_64-linux = "04syyp2y00wz2nzcaha72ckr224m920bxpb4p4sxmr0ii4nw2j4w";
+    aarch64-darwin = "1bny1bjrj6g96hdag8jldrjmdmcb081g7alfnr9k0vrsmgdvs6n0";
+    aarch64-linux = "09jg04nfy5l3iwch6070986yci3b5nl38ya1vq6x3hh4d6bkngvz";
+    x86_64-darwin = "1gv1mki54srfp0fs9mh09gcxcqgvyhv0b1w3r7xnz58zwa1lc04h";
+    x86_64-linux = "1xir6fh3a93zpmykc0ka56flxb7x78dqiahfivad1s3kn25w4zkc";
   };
 in
   stdenvNoCC.mkDerivation {
     pname = "cfgd";
-    version = "0.10.0";
+    version = "0.11.0";
 
     src = fetchurl {
       url = selectSystem urlMap;
@@ -44,6 +44,7 @@ in
     ];
 
     installPhase = ''
+      runHook preInstall
       mkdir -p $out/bin
       cp -vr ./cfgd $out/bin/cfgd
       chmod +x $out/bin/cfgd
@@ -51,6 +52,7 @@ in
       installManPage man/man1/*
       installManPage man/man1/cfgd.1
       installShellCompletion --bash completions/cfgd --zsh completions/_cfgd --fish completions/cfgd.fish
+      runHook postInstall
     '';
 
     postInstall = ''
@@ -69,7 +71,7 @@ in
 
       '';
       homepage = "https://github.com/tj-smith47/cfgd";
-      changelog = "https://github.com/tj-smith47/cfgd/releases/tag/v0.10.0";
+      changelog = "https://github.com/tj-smith47/cfgd/releases/tag/v0.11.0";
       license = with lib.licenses; [mit asl20];
       maintainers = [];
       mainProgram = "cfgd";
