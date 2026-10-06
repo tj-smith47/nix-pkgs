@@ -9,21 +9,21 @@
 }: let
   selectSystem = attrs: attrs.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
   urlMap = {
-    aarch64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-darwin-arm64.tar.gz";
-    aarch64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-linux-arm64.tar.gz";
-    x86_64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-darwin-amd64.tar.gz";
-    x86_64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.11.0/cfgd-0.11.0-linux-amd64.tar.gz";
+    aarch64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.12.0/cfgd-0.12.0-darwin-arm64.tar.gz";
+    aarch64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.12.0/cfgd-0.12.0-linux-arm64.tar.gz";
+    x86_64-darwin = "https://github.com/tj-smith47/cfgd/releases/download/v0.12.0/cfgd-0.12.0-darwin-amd64.tar.gz";
+    x86_64-linux = "https://github.com/tj-smith47/cfgd/releases/download/v0.12.0/cfgd-0.12.0-linux-amd64.tar.gz";
   };
   shaMap = {
-    aarch64-darwin = "1bny1bjrj6g96hdag8jldrjmdmcb081g7alfnr9k0vrsmgdvs6n0";
-    aarch64-linux = "09jg04nfy5l3iwch6070986yci3b5nl38ya1vq6x3hh4d6bkngvz";
-    x86_64-darwin = "1gv1mki54srfp0fs9mh09gcxcqgvyhv0b1w3r7xnz58zwa1lc04h";
-    x86_64-linux = "1xir6fh3a93zpmykc0ka56flxb7x78dqiahfivad1s3kn25w4zkc";
+    aarch64-darwin = "18nbkqaphyzg4fh1cr0v162qjpk0a6rir8si0512m7xizqdy6ixj";
+    aarch64-linux = "0hg68sm5mmjlwa6ii1jj61n4aylaasrhxl2dnp3yai3qq36bqsx7";
+    x86_64-darwin = "0pcwb4cvhwzn6wmfc47ann0gl7ls5lfrzbgiyvj2kmb23ll1z311";
+    x86_64-linux = "1k5jim0hlfncy27smywngpcpwaa4hnq54cjzsvm6psa4pyjnydjq";
   };
 in
   stdenvNoCC.mkDerivation {
     pname = "cfgd";
-    version = "0.11.0";
+    version = "0.12.0";
 
     src = fetchurl {
       url = selectSystem urlMap;
@@ -71,7 +71,7 @@ in
 
       '';
       homepage = "https://github.com/tj-smith47/cfgd";
-      changelog = "https://github.com/tj-smith47/cfgd/releases/tag/v0.11.0";
+      changelog = "https://github.com/tj-smith47/cfgd/releases/tag/v0.12.0";
       license = with lib.licenses; [mit asl20];
       maintainers = [];
       mainProgram = "cfgd";
